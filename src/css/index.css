@@ -1,0 +1,317 @@
+/* CSS variables */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --neutral-color: #172b4d;
+  --primary-color: #300350;
+  --accent-color: #2230d2;
+  --font-sans: 'Poppins', sans-serif;
+}
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Setting font family and size */
+
+html {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 62.5%;
+  background-image: url(../img/background.png);
+  background-position: center center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+body {
+  width: 60%;
+  margin-top: 4rem;
+  padding: 4rem;
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 8);
+  background-color: #f2c75b;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  box-shadow: 8px 8px 0 var(--primary-color);
+  border: 2px solid var(--primary-color);
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 0;
+}
+
+header nav .header__ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  background-color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  list-style-type: none;
+}
+
+header nav ul li .header__logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-left: 2.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+header nav ul li .header__logo:hover {
+  color: var(--accent-color);
+}
+
+header nav ul li .header__logo:active {
+  color: white;
+  background-color: var(--secondary-color);
+}
+
+header nav ul li .header__logo:disabled,
+header nav ul li .header__logo[disabled] {
+  color: var(--neutral-color);
+  background-color: white;
+}
+
+.desktop-menu-container {
+  display: flex;
+}
+
+.desktop-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop-menu li {
+  list-style-type: none;
+}
+
+.middle-item {
+  border-right: 2px solid var(--neutral-color);
+  border-left: 2px solid var(--neutral-color);
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+.desktop-menu li a {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  text-decoration: none;
+  padding: 0 2.5rem 0 2.5rem;
+  color: var(--neutral-color);
+}
+
+.desktop-menu li a:hover {
+  color: var(--accent-color);
+}
+
+.desktop-menu li a:active {
+  color: cyan;
+}
+
+.desktop-menu li a:focus {
+  color: cyan;
+}
+
+.date-container {
+  font-weight: 600;
+  font-size: 1.4rem;
+  align-self: flex-end;
+  margin-bottom: 2rem;
+}
+
+.title {
+  min-width: 30rem;
+  background-color: #fff;
+  font-size: 1.4rem;
+  border: 2px solid var(--primary-color);
+  box-shadow: 8px 8px 0 var(--primary-color);
+  padding: 1rem 2rem;
+  margin: 2rem 0 4rem 0;
+  text-align: center;
+}
+
+.book-container {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 8px 8px 0 var(--primary-color);
+}
+
+.list-book {
+  width: 96%;
+  background-color: #fff;
+  border: 2px solid black;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 8px 8px 0 var(--primary-color);
+}
+
+.article-book {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem;
+  font-size: 1.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.book-container .article-book:nth-child(odd) {
+  background-color: lightgray;
+}
+
+hr {
+  height: 80%;
+  border-right: 2px solid var(--primary-color);
+}
+
+.add-new {
+  width: 100%;
+  background-color: #fff;
+  padding: 4rem;
+  margin-bottom: 2rem;
+  border: 2px solid var(--primary-color);
+  box-shadow: 8px 8px 0 var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form .inputs {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border: 2px solid var(--primary-color);
+  box-shadow: 8px 8px 0 var(--primary-color);
+  padding: 3rem 5rem;
+  margin-bottom: 3rem;
+}
+
+.form .form-title {
+  padding-bottom: 0.5rem;
+}
+
+.form input {
+  width: 60%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 2px solid var(--primary-color);
+  box-shadow: 4px 4px 0 var(--primary-color);
+}
+
+::placeholder {
+  font-weight: bold;
+}
+
+.form-footer {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.error-msg-container {
+  color: purple;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.removeBookBtn,
+.addBookBtn {
+  width: 8rem;
+  align-self: flex-end;
+  border: 2px solid var(--primary-color);
+  box-shadow: 4px 4px 0 var(--primary-color);
+  padding: 1rem;
+  background-color: #fff;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.removeBookBtn:hover,
+.addBookBtn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.removeBookBtn:active,
+.addBookBtn:active {
+  background-color: purple;
+  color: #fff;
+  transform: translate(2px, 2px);
+}
+
+.contact-container {
+  width: 100%;
+  background-color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--primary-color);
+  box-shadow: 8px 8px 0 var(--primary-color);
+  padding: 4rem;
+}
+
+.list-contact {
+  font-size: 1.6rem;
+  margin: 1rem 0 3rem 4rem;
+}
+
+footer {
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 4rem;
+  color: var(--neutral-color);
+  border: 2px solid var(--primary-color);
+  box-shadow: 8px 8px 0 var(--primary-color);
+}
+
+.hideSection {
+  display: none;
+}
+
+header nav ul li .activeLink {
+  color: cyan;
+}
