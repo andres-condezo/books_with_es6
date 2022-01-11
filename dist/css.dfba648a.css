@@ -105,10 +105,10 @@ header nav ul li .header__logo[disabled] {
   list-style-type: none;
 }
 
-.middle-item {
-  border-right: 2px solid var(--neutral-color);
+.desktop-menu li:not(:first-child)::before {
+  content: "";
   border-left: 2px solid var(--neutral-color);
-  padding: 0 1.5rem 0 1.5rem;
+  padding: 0 0 0 2.5rem;
 }
 
 .desktop-menu li a {
@@ -117,7 +117,7 @@ header nav ul li .header__logo[disabled] {
   font-size: 1.3rem;
   line-height: 2rem;
   text-decoration: none;
-  padding: 0 2.5rem 0 2.5rem;
+  padding: 0 2.5rem 0 0;
   color: var(--neutral-color);
 }
 
@@ -138,6 +138,7 @@ header nav ul li .header__logo[disabled] {
   font-size: 1.4rem;
   align-self: flex-end;
   margin-bottom: 2rem;
+  margin-right: 2.5rem
 }
 
 .title {

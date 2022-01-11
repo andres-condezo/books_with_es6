@@ -173,11 +173,11 @@ var _utilities = require("./utilities.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -204,95 +204,108 @@ var _$$ = (0, _utilities.$$)('input'),
 // ***************
 
 
-var BookApp = /*#__PURE__*/_createClass(function BookApp() {
-  var _this = this;
+var BookApp = /*#__PURE__*/function () {
+  function BookApp() {
+    var _this = this;
 
-  _classCallCheck(this, BookApp);
+    _classCallCheck(this, BookApp);
 
-  _defineProperty(this, "saveLocal", function () {
-    var catchCollection = JSON.stringify(_this.bookCollection);
-    localStorage.setItem('bookCollection', catchCollection);
-  });
-
-  _defineProperty(this, "getLocal", function () {
-    if (localStorage.getItem('bookCollection')) {
-      _this.bookCollection = JSON.parse(localStorage.getItem('bookCollection'));
-    }
-  });
-
-  _defineProperty(this, "bookTemplate", function (book) {
-    return "\n  <h3 class=\"bookTitle\">\"".concat(book.title, "\" by ").concat(book.author, "</h3>\n  <button type='button' class=\"removeBookBtn\">Remove</button>\n  ");
-  });
-
-  _defineProperty(this, "renderBooks", function () {
-    $bookContainer.innerHTML = '';
-
-    _this.bookCollection.forEach(function (book) {
-      var article = document.createElement('article');
-      article.className = 'article-book';
-      article.innerHTML = _this.bookTemplate(book);
-      $bookContainer.appendChild(article);
+    _defineProperty(this, "saveLocal", function () {
+      var catchCollection = JSON.stringify(_this.bookCollection);
+      localStorage.setItem('bookCollection', catchCollection);
     });
-  });
 
-  _defineProperty(this, "createRemoveFunction", function () {
-    var removeBtnArray = document.querySelectorAll('.removeBookBtn');
-    removeBtnArray.forEach(function (button, index) {
-      button.addEventListener('click', function () {
-        _this.bookCollection.splice(index, 1);
+    _defineProperty(this, "getLocal", function () {
+      if (localStorage.getItem('bookCollection')) {
+        _this.bookCollection = JSON.parse(localStorage.getItem('bookCollection'));
+      }
+    });
 
-        _this.renderBooks();
+    _defineProperty(this, "bookTemplate", function (book) {
+      return "\n  <h3 class=\"bookTitle\">\"".concat(book.title, "\" by ").concat(book.author, "</h3>\n  <button type='button' class=\"removeBookBtn\">Remove</button>\n  ");
+    });
 
-        _this.createRemoveFunction();
+    _defineProperty(this, "renderBooks", function () {
+      $bookContainer.innerHTML = '';
 
-        _this.saveLocal();
+      _this.bookCollection.forEach(function (book) {
+        var article = document.createElement('article');
+        article.className = 'article-book';
+        article.innerHTML = _this.bookTemplate(book);
+        $bookContainer.appendChild(article);
       });
     });
-  });
 
-  _defineProperty(this, "displayBookCollection", function () {
-    _this.renderBooks();
+    _defineProperty(this, "createRemoveFunction", function () {
+      var removeBtnArray = document.querySelectorAll('.removeBookBtn');
+      removeBtnArray.forEach(function (button, index) {
+        button.addEventListener('click', function () {
+          _this.bookCollection.splice(index, 1);
 
-    _this.createRemoveFunction();
-  });
+          _this.renderBooks();
 
-  _defineProperty(this, "clearFields", function () {
-    $titleInput.value = '';
-    $authorInput.value = '';
-  });
+          _this.createRemoveFunction();
 
-  _defineProperty(this, "isNotValid", function (newTitle, newAuthor) {
-    var bool = _this.bookCollection.find(function (item) {
-      return item.title === newTitle && item.author === newAuthor;
+          _this.saveLocal();
+        });
+      });
     });
 
-    return bool;
-  });
+    _defineProperty(this, "displayBookCollection", function () {
+      _this.renderBooks();
 
-  _defineProperty(this, "addBook", function () {
-    if (_this.isNotValid($titleInput.value, $authorInput.value)) {
+      _this.createRemoveFunction();
+    });
+
+    _defineProperty(this, "clearFields", function () {
+      $titleInput.value = '';
+      $authorInput.value = '';
+    });
+
+    _defineProperty(this, "isNotValid", function (newTitle, newAuthor) {
+      var bool = _this.bookCollection.find(function (item) {
+        return item.title.toLowerCase() === newTitle.toLowerCase() && item.author.toLowerCase() === newAuthor.toLowerCase();
+      });
+
+      return bool;
+    });
+
+    _defineProperty(this, "displayError", function () {
       $errorMsgContainer.innerHTML = '* The book is already in the collection';
       setTimeout(function () {
         $errorMsgContainer.innerHTML = '';
 
         _this.clearFields();
       }, 2000);
-    } else {
+    });
+
+    _defineProperty(this, "addBook", function () {
+      if (_this.isNotValid($titleInput.value, $authorInput.value)) {
+        _this.displayError();
+
+        return;
+      }
+
+      _this.createBook();
+    });
+
+    this.bookCollection = [];
+  } // Local Storage
+
+
+  _createClass(BookApp, [{
+    key: "createBook",
+    value: function createBook() {
       var newBook = new _book.default($titleInput.value, $authorInput.value);
-
-      _this.bookCollection.push(newBook);
-
-      _this.displayBookCollection();
-
-      _this.clearFields();
-
-      _this.saveLocal();
+      this.bookCollection.push(newBook);
+      this.displayBookCollection();
+      this.clearFields();
+      this.saveLocal();
     }
-  });
+  }]);
 
-  this.bookCollection = [];
-} // Local Storage
-);
+  return BookApp;
+}();
 
 var _default = BookApp;
 exports.default = _default;
@@ -8969,7 +8982,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40763" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38341" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
