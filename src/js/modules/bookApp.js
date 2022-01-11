@@ -68,22 +68,31 @@ class BookApp {
 
   isNotValid = (newTitle, newAuthor) => {
     const bool = this.bookCollection.find(
-      (item) => item.title === newTitle && item.author === newAuthor,
+      (item) => item.title.toLowerCase() === newTitle.toLowerCase()
+            && item.author.toLowerCase() === newAuthor.toLowerCase(),
     );
     return bool;
   }
 
+  displayError = () => {
+    $errorMsgContainer.innerHTML = '* The book is already in the collection';
+    setTimeout(() => { $errorMsgContainer.innerHTML = ''; this.clearFields(); }, 2000);
+  }
+
+  createBook() {
+    const newBook = new Book($titleInput.value, $authorInput.value);
+    this.bookCollection.push(newBook);
+    this.displayBookCollection();
+    this.clearFields();
+    this.saveLocal();
+  }
+
   addBook = () => {
     if (this.isNotValid($titleInput.value, $authorInput.value)) {
-      $errorMsgContainer.innerHTML = '* The book is already in the collection';
-      setTimeout(() => { $errorMsgContainer.innerHTML = ''; this.clearFields(); }, 2000);
-    } else {
-      const newBook = new Book($titleInput.value, $authorInput.value);
-      this.bookCollection.push(newBook);
-      this.displayBookCollection();
-      this.clearFields();
-      this.saveLocal();
+      this.displayError();
+      return;
     }
+    this.createBook();
   }
 }
 
